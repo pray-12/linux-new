@@ -1,0 +1,134 @@
+## 19. Interview questions – 20 questions
+
+Study these for one hour. First try answering aloud without looking at the answer. Then compare your response.
+
+### Fundamentals
+
+**1. What is Linux?**
+
+Linux is an open-source, Unix-like operating system built around the Linux kernel. It is widely used in cloud servers, containers and production infrastructure.
+
+**2. What is the difference between kernel and shell?**
+
+The kernel manages system resources and hardware. The shell provides a command interface through which users interact with the operating system.
+
+**3. What is the difference between `/etc` and `/var`?**
+
+`/etc` stores configuration files. `/var` stores variable data such as logs, cache and spool files.
+
+**4. What is a process?**
+
+A process is an executing instance of a program. It has a PID and consumes resources such as CPU and memory.
+
+**5. What is the difference between root and a normal user?**
+
+Root has UID 0 and broad administrative privileges. A normal user has restricted permissions and can use `sudo` for authorized administrative tasks.
+
+### Commands and permissions
+
+**6. What is the difference between `grep`, `sed` and `awk`?**
+
+`grep` searches matching lines, `sed` transforms text streams, and `awk` processes text using patterns and fields.
+
+**7. What is the difference between `>` and `>>`?**
+
+`>` overwrites a file. `>>` appends to an existing file.
+
+**8. Explain chmod 755.**
+
+The owner has read, write and execute (7). Group and others have read and execute (5).
+
+**9. What is the difference between chmod and chown?**
+
+`chmod` changes permissions; `chown` changes ownership.
+
+**10. What is the difference between hard and soft links?**
+
+A hard link points to the same inode as the original file. A soft link is a separate file that points to a target path. A soft link can become broken if its target disappears.
+
+### Processes, services and logs
+
+**11. What is the difference between `kill` and `kill -9`?**
+
+`kill` sends SIGTERM by default, requesting graceful termination. `kill -9` sends SIGKILL and forces termination.
+
+**12. What is systemd?**
+
+Systemd is an init and service manager used by many Linux distributions to start and manage services and system processes.
+
+**13. What is the difference between restart and reload?**
+
+Restart stops and starts a service. Reload asks a service to re-read its configuration without a full restart, if supported.
+
+**14. How do you check real-time logs?**
+
+Use `tail -f /path/to/log` for a regular log file or `journalctl -u service-name -f` for a systemd service.
+
+**15. How do you find the largest files or directories?**
+
+Use `du -sh` to inspect directory sizes, `find` to locate large files, and `df -h` to identify full filesystems.
+
+### Links, networking and scripting
+
+**16. How do you check which process is listening on port 8080?**
+
+```bash
+sudo ss -tulpn | grep ':8080'
+```
+
+**17. What is SSH and why is it secure?**
+
+SSH provides encrypted remote access. It protects credentials and data in transit and supports public-key authentication.
+
+**18. What is the purpose of `sed -i`?**
+
+It edits a file in place. For example, `sed -i 's/old/new/g' file.txt` replaces matching text in the file itself.
+
+**19. What is an exit code in Linux?**
+
+It is the status returned by a command. `0` conventionally indicates success, while a non-zero value indicates an error or other condition.
+
+**20. A production server is down. What is your Linux troubleshooting approach?**
+
+Check connectivity, CPU and memory, disk space, service status, application logs, listening ports and recent changes. Identify the root cause, restore service safely and verify application health.
+
+## 20. One-page quick revision sheet
+
+| Topic | Remember these |
+|---|---|
+| Navigation | `pwd`, `ls -la`, `cd` |
+| Files | `touch`, `mkdir -p`, `cp`, `mv`, `rm` |
+| Reading | `cat`, `less`, `head`, `tail -f` |
+| Search | `find`, `grep -i`, `grep -r` |
+| Text editing | `sed`, `awk`, `cut` |
+| Users | `whoami`, `id`, `useradd`, `usermod` |
+| Permissions | `chmod`, `chown`, `755`, `644` |
+| Links | `ln`, `ln -s`, `ls -li` |
+| Processes | `ps aux`, `top`, `pgrep`, `kill` |
+| Services | `systemctl`, `journalctl` |
+| Disk/memory | `df -h`, `du -sh`, `free -h` |
+| Networking | `ip addr`, `ss`, `curl`, `dig`, `ping` |
+| Remote access | `ssh`, `chmod 400 key.pem` |
+| Scripting | variables, conditions, loops, exit codes |
+
+---
+
+## Self-assessment checklist
+
+Mark each topic only after you can explain it and demonstrate it without copying the notes.
+
+- [ ] Explain Linux architecture and filesystem hierarchy.
+- [ ] Navigate directories and manage files.
+- [ ] Search logs using `grep`, `find`, pipes and `sed`.
+- [ ] Create users and groups.
+- [ ] Explain `chmod`, `chown` and numeric permissions.
+- [ ] Demonstrate hard links and soft links.
+- [ ] Inspect and terminate processes safely.
+- [ ] Manage services using `systemctl`.
+- [ ] Read logs using `journalctl` and `tail`.
+- [ ] Troubleshoot disk, memory, CPU and network issues.
+- [ ] Connect to a remote server using SSH.
+- [ ] Write and execute a basic shell script.
+- [ ] Answer all 20 interview questions aloud.
+
+**Interview preparation tip:** Don't just memorize commands. For every command, know what problem it solves, what its output means, and what you would do next based on that output.

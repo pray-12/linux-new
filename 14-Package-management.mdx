@@ -1,0 +1,13 @@
+## 14. Package management
+
+Package managers install, update and remove software.
+
+| Debian/Ubuntu | RHEL/Amazon Linux family |
+|---|---|
+| `sudo apt update` | `sudo dnf check-update` |
+| `sudo apt install nginx` | `sudo dnf install nginx` |
+| `sudo apt remove nginx` | `sudo dnf remove nginx` |
+| `sudo apt upgrade` | `sudo dnf upgrade` |
+| `dpkg -l` | `rpm -qa` |
+
+`apt update` refreshes package indexes; `apt upgrade` installs available updates.

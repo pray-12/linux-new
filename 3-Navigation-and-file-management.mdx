@@ -1,0 +1,26 @@
+## 3. Navigation and file management
+
+| Command | What it does | Example |
+|---|---|---|
+| `pwd` | Print current directory | `pwd` |
+| `ls` | List directory contents | `ls` |
+| `ls -l` | Long listing | `ls -l` |
+| `ls -la` | Include hidden files | `ls -la` |
+| `cd` | Change directory | `cd /var/log` |
+| `cd ..` | Move to parent | `cd ..` |
+| `cd ~` | Go to home | `cd ~` |
+| `touch` | Create empty file/update timestamp | `touch app.log` |
+| `mkdir` | Create directory | `mkdir app` |
+| `mkdir -p` | Create nested directories | `mkdir -p app/logs/archive` |
+| `cp` | Copy file | `cp a.txt b.txt` |
+| `cp -r` | Copy directory recursively | `cp -r app app-backup` |
+| `mv` | Move or rename | `mv old.txt new.txt` |
+| `rm` | Remove file | `rm app.log` |
+| `rm -r` | Remove directory recursively | `rm -r old-app` |
+| `cat` | Print file contents | `cat app.log` |
+| `less` | Read file page by page | `less app.log` |
+| `head` | First lines | `head -n 10 app.log` |
+| `tail` | Last lines | `tail -n 20 app.log` |
+| `tail -f` | Follow a growing log | `tail -f app.log` |
+
+**Caution:** `rm -rf` recursively and forcefully deletes paths. Double-check the path before running it, especially with `sudo` or on production machines.

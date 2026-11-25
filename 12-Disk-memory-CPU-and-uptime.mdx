@@ -1,0 +1,29 @@
+## 12. Disk, memory, CPU and uptime
+
+```bash
+df -h
+du -sh /var/log
+du -sh /var/*
+lsblk
+free -h
+top
+uptime
+```
+
+| Command | Purpose |
+|---|---|
+| `df -h` | Filesystem capacity and usage |
+| `du -sh path` | Size of a directory or file |
+| `lsblk` | Block devices and partitions |
+| `free -h` | Memory and swap usage |
+| `top` | Live process and resource view |
+| `uptime` | Uptime and load averages |
+
+**Disk full troubleshooting:**
+1. `df -h` identifies which filesystem is full.
+2. `du -sh /var/*` helps find large directories.
+3. Inspect logs, application data and temporary files.
+4. Clean only files confirmed safe to remove.
+5. Configure log rotation or expand storage if needed.
+
+A deleted file may still consume disk space if a running process keeps it open. Tools such as `lsof +L1` can help find deleted-but-open files if `lsof` is installed.

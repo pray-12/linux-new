@@ -1,0 +1,41 @@
+## 13. Networking commands
+
+| Command | Purpose |
+|---|---|
+| `ip addr` | Show interfaces and IP addresses |
+| `ip route` | Show routing table |
+| `ping host` | Test reachability |
+| `curl -I URL` | Fetch HTTP response headers |
+| `curl -v URL` | Verbose connection troubleshooting |
+| `ss -tulpn` | Show listening TCP/UDP sockets |
+| `nslookup domain` | DNS lookup |
+| `dig domain` | Detailed DNS lookup |
+| `traceroute host` | Trace network path, if installed |
+| `ssh user@host` | Remote SSH connection |
+
+Common ports:
+
+| Port | Service |
+|---:|---|
+| 22 | SSH |
+| 53 | DNS |
+| 80 | HTTP |
+| 443 | HTTPS |
+| 3306 | MySQL |
+| 5432 | PostgreSQL |
+| 8080 | Common Jenkins default |
+| 6443 | Kubernetes API server |
+
+Check if a port is listening:
+
+```bash
+sudo ss -tulpn | grep ':8080'
+```
+
+Test local application response:
+
+```bash
+curl -v http://localhost:8080
+```
+
+A port listening on the server does not automatically mean it is reachable from the internet. Check host firewall rules, cloud security groups, network ACLs and routing.

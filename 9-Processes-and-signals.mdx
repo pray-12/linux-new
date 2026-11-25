@@ -1,0 +1,37 @@
+## 9. Processes and signals
+
+A process is a running instance of a program. Each process has a PID (process ID).
+
+```bash
+ps aux
+ps -ef
+top
+pgrep nginx
+free -h
+```
+
+Sort processes by CPU or memory:
+
+```bash
+ps aux --sort=-%cpu | head
+ps aux --sort=-%mem | head
+```
+
+Terminate a process:
+
+```bash
+kill 1234
+kill -9 1234
+```
+
+- `kill PID` sends SIGTERM (15) by default. It requests graceful termination.
+- `kill -9 PID` sends SIGKILL (9). It forces termination and cannot be caught or handled by the process.
+
+Background jobs:
+
+```bash
+sleep 300 &
+jobs
+```
+
+Use `fg` and `bg` to move jobs between foreground and background in the current shell.

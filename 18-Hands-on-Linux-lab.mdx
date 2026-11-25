@@ -1,0 +1,90 @@
+## 18. Hands-on Linux lab
+
+Run these commands on your Linux VM, WSL or EC2 instance. Avoid running destructive commands on production.
+
+### Task A – Create a practice structure
+
+```bash
+mkdir -p ~/devops-day1/{scripts,logs,backup}
+cd ~/devops-day1
+pwd
+ls -la
+```
+
+### Task B – Create and inspect a log
+
+```bash
+cat > logs/app.log <<'EOF'
+INFO Application started
+INFO Database connected
+ERROR Database connection timeout
+WARNING Retry attempt 1
+ERROR Request failed
+INFO Application stopped
+EOF
+
+cat logs/app.log
+grep -n "ERROR" logs/app.log
+grep -c "ERROR" logs/app.log
+tail -n 3 logs/app.log
+```
+
+### Task C – Practice `sed`
+
+```bash
+sed 's/INFO/INFORMATION/g' logs/app.log
+sed -n '/ERROR/p' logs/app.log
+sed '/WARNING/d' logs/app.log
+```
+
+Try a safe in-place edit on a copy:
+
+```bash
+cp logs/app.log logs/app-copy.log
+sed -i.bak 's/INFO/DEBUG/g' logs/app-copy.log
+```
+
+### Task D – Practice permissions
+
+```bash
+touch scripts/deploy.sh
+chmod 755 scripts/deploy.sh
+ls -l scripts/deploy.sh
+```
+
+### Task E – Practice hard and soft links
+
+```bash
+echo "Linux links lab" > original.txt
+ln original.txt hard.txt
+ln -s original.txt soft.txt
+ls -li original.txt hard.txt soft.txt
+```
+
+Observe inode numbers. Then remove `original.txt` and test which link still works:
+
+```bash
+rm original.txt
+cat hard.txt
+cat soft.txt
+```
+
+### Task F – Inspect resources and processes
+
+```bash
+df -h
+free -h
+uptime
+ps aux --sort=-%mem | head
+sleep 300 &
+jobs
+```
+
+Find and stop the test process:
+
+```bash
+pgrep -af "sleep 300"
+kill <PID>
+```
+
+Replace `<PID>` with the actual process ID returned by `pgrep`.

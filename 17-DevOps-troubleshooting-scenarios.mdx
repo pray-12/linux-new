@@ -1,0 +1,69 @@
+## 17. DevOps troubleshooting scenarios
+
+### Scenario 1: Server CPU usage is 100%
+
+```bash
+top
+ps aux --sort=-%cpu | head
+```
+
+Identify the process, inspect its logs and determine whether the workload is expected. Do not kill processes blindly.
+
+### Scenario 2: Disk usage is 100%
+
+```bash
+df -h
+du -sh /var/*
+```
+
+Find large directories and files. Inspect logs and application data before cleaning. Consider log rotation and disk expansion.
+
+### Scenario 3: Nginx is not starting
+
+```bash
+sudo systemctl status nginx
+sudo journalctl -u nginx -n 100
+sudo nginx -t
+sudo ss -tulpn | grep ':80'
+```
+
+Check syntax, logs, port conflicts, permissions and configuration.
+
+### Scenario 4: Jenkins is not accessible on port 8080
+
+```bash
+sudo systemctl status jenkins
+sudo ss -tulpn | grep ':8080'
+curl -v http://localhost:8080
+sudo journalctl -u jenkins -n 100
+```
+
+Then verify firewall and cloud security group rules.
+
+### Scenario 5: Application returns HTTP 502
+
+- Check whether the application process is running.
+- Check whether the application is listening on the expected port.
+- Inspect Nginx or load balancer logs.
+- Test the upstream locally with `curl`.
+- Check network rules and application health.
+
+### Scenario 6: User gets permission denied
+
+```bash
+ls -l file.txt
+id username
+namei -l /path/to/file
+```
+
+Check ownership, file permissions and execute permission on every parent directory. Fix only the required permission or ownership.
+
+### Scenario 7: DNS is not resolving
+
+```bash
+nslookup example.com
+dig example.com
+cat /etc/resolv.conf
+```
+
+Check DNS configuration, resolver availability and network connectivity.

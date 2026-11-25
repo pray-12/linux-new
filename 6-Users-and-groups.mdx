@@ -1,0 +1,25 @@
+## 6. Users and groups
+
+Linux is a multi-user operating system. Each user has a UID (user ID) and belongs to one or more groups.
+
+```bash
+whoami
+id
+who
+```
+
+| Command | Purpose |
+|---|---|
+| `whoami` | Current username |
+| `id` | UID, primary group and supplementary groups |
+| `who` | Logged-in sessions |
+| `sudo useradd -m devopsuser` | Create a user with a home directory |
+| `sudo passwd devopsuser` | Set user's password |
+| `sudo groupadd developers` | Create a group |
+| `sudo usermod -aG developers devopsuser` | Add user to supplementary group |
+| `su - devopsuser` | Switch user with login environment |
+| `sudo command` | Run command with elevated privileges |
+
+**Important:** `-aG` appends a supplementary group. Using `-G` without `-a` can replace the user's supplementary group list.
+
+Root has UID `0` and administrative privileges. Use a normal account for routine work and `sudo` only when required.

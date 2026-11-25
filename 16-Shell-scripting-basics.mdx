@@ -1,0 +1,62 @@
+## 16. Shell scripting basics
+
+Shell scripts automate repetitive tasks.
+
+Example `deploy.sh`:
+
+```bash
+#!/bin/bash
+set -e
+
+APP_NAME="demo-app"
+echo "Starting deployment for $APP_NAME"
+
+mkdir -p /tmp/deployment
+date
+
+echo "Deployment completed"
+```
+
+Run it:
+
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+Variables:
+
+```bash
+APP_NAME="myapp"
+echo "$APP_NAME"
+```
+
+Condition:
+
+```bash
+if [ -f "/tmp/app.log" ]; then
+    echo "Log file exists"
+else
+    echo "Log file does not exist"
+fi
+```
+
+Loop:
+
+```bash
+for i in 1 2 3
+do
+    echo "Running task $i"
+done
+```
+
+Exit code:
+
+```bash
+echo $?
+```
+
+- `0` generally means success.
+- Non-zero generally means failure.
+
+`set -e` causes a script to exit when an unhandled command fails. For production scripts, understand its behavior and handle expected failures deliberately.

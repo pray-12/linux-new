@@ -1,0 +1,65 @@
+## 4. Searching, pipes and text processing
+
+### `find` – search for files
+
+```bash
+find /var/log -name "*.log"
+find . -type f -name "*.conf"
+find /var/log -type f -size +100M
+```
+
+Common options:
+- `-name` matches a filename.
+- `-type f` searches regular files.
+- `-type d` searches directories.
+- `-size +100M` finds files larger than 100 MB.
+
+### `grep` – search inside text
+
+```bash
+grep "ERROR" app.log
+grep -i "error" app.log
+grep -n "ERROR" app.log
+grep -r "database" /etc/
+grep -c "ERROR" app.log
+```
+
+| Option | Meaning |
+|---|---|
+| `-i` | Ignore case |
+| `-n` | Show line numbers |
+| `-r` | Search recursively |
+| `-v` | Show lines that do not match |
+| `-c` | Count matching lines |
+| `-E` | Use extended regular expressions |
+
+### Pipes and redirection
+
+A pipe (`|`) passes the output of one command as input to another.
+
+```bash
+grep "ERROR" app.log | wc -l
+```
+
+Redirection:
+```bash
+echo "deployment started" > deploy.log
+echo "deployment completed" >> deploy.log
+command > output.txt 2> errors.txt
+command >> combined.log 2>&1
+```
+
+- `>` overwrites a file.
+- `>>` appends to a file.
+- `2>` redirects standard error.
+- `2>&1` sends standard error to the same destination as standard output.
+
+### Other useful text commands
+
+```bash
+wc -l app.log
+sort names.txt
+sort names.txt | uniq
+cut -d: -f1 /etc/passwd
+awk '{print $1}' access.log
+```

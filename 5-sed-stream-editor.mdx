@@ -1,0 +1,97 @@
+## 5. `sed` – stream editor
+
+`sed` is a command-line stream editor used to search, replace, delete, print and transform text. It is useful in configuration editing, log processing and shell scripts.
+
+### 5.1 Search and replace
+
+```bash
+sed 's/old/new/' file.txt
+```
+
+Replaces the first occurrence on each line in the output.
+
+```bash
+sed 's/old/new/g' file.txt
+```
+
+Replaces every occurrence on each line in the output.
+
+### 5.2 Edit a file in place
+
+```bash
+sed -i 's/localhost/127.0.0.1/g' config.txt
+```
+
+`-i` modifies the file itself. On important files, make a backup first:
+
+```bash
+sed -i.bak 's/localhost/127.0.0.1/g' config.txt
+```
+
+This creates `config.txt.bak` before editing.
+
+### 5.3 Delete lines
+
+```bash
+sed '3d' file.txt
+```
+
+Prints the file with line 3 removed.
+
+```bash
+sed '1,5d' file.txt
+```
+
+Prints the file with lines 1 through 5 removed.
+
+```bash
+sed '/DEBUG/d' app.log
+```
+
+Prints the file without lines containing `DEBUG`.
+
+### 5.4 Print selected lines
+
+```bash
+sed -n '5p' file.txt
+sed -n '10,20p' file.txt
+sed -n '/ERROR/p' app.log
+```
+
+`-n` suppresses default printing; `p` prints only selected lines.
+
+### 5.5 Replace only on a matching line
+
+```bash
+sed '/database/s/localhost/db.internal/' config.txt
+```
+
+Only lines containing `database` are modified in the output.
+
+### 5.6 Practical DevOps examples
+
+Replace an image tag in a deployment manifest:
+
+```bash
+sed -i 's|image: myapp:old|image: myapp:v2|' deployment.yaml
+```
+
+Extract error lines:
+
+```bash
+sed -n '/ERROR/p' application.log
+```
+
+Remove blank lines from output:
+
+```bash
+sed '/^[[:space:]]*$/d' config.txt
+```
+
+**`sed` vs `grep` vs `awk`:**
+
+| Tool | Main purpose |
+|---|---|
+| `grep` | Find matching lines |
+| `sed` | Transform or edit streams of text |
+| `awk` | Process structured text by fields and patterns |

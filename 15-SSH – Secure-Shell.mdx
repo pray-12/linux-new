@@ -1,0 +1,20 @@
+## 15. SSH – Secure Shell
+
+SSH provides encrypted remote access to Linux machines.
+
+```bash
+ssh ubuntu@192.168.1.10
+ssh -i my-key.pem ubuntu@server-ip
+```
+
+Restrict private key permissions:
+
+```bash
+chmod 400 my-key.pem
+```
+
+SSH key authentication uses:
+- **Private key:** kept secret by the client.
+- **Public key:** installed on the server, commonly in `~/.ssh/authorized_keys`.
+
+Never share or commit private keys to Git repositories.

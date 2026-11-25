@@ -1,0 +1,33 @@
+## 11. Logs and troubleshooting
+
+Logs provide evidence about application, service and operating-system behavior.
+
+Common locations (distribution and configuration dependent):
+
+| Log | Purpose |
+|---|---|
+| `/var/log/syslog` | General system messages on some Debian/Ubuntu systems |
+| `/var/log/auth.log` | Authentication messages on Debian/Ubuntu |
+| `/var/log/kern.log` | Kernel messages on some Debian/Ubuntu systems |
+| `/var/log/messages` | General messages on some RHEL-family systems |
+| `/var/log/nginx/access.log` | Nginx access log |
+| `/var/log/nginx/error.log` | Nginx error log |
+
+`journalctl` reads the systemd journal:
+
+```bash
+journalctl
+journalctl -u nginx
+journalctl -u nginx -n 100
+journalctl -u nginx -f
+journalctl -p err
+journalctl --since "1 hour ago"
+```
+
+Useful log commands:
+
+```bash
+tail -f /var/log/nginx/error.log
+grep -i "error" /var/log/nginx/error.log
+grep -c "ERROR" application.log
+```

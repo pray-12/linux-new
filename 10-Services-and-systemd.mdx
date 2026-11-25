@@ -1,0 +1,26 @@
+## 10. Services and systemd
+
+Many Linux distributions use `systemd` to manage background services.
+
+```bash
+sudo systemctl status nginx
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl reload nginx
+sudo systemctl enable nginx
+sudo systemctl disable nginx
+systemctl is-active nginx
+systemctl is-enabled nginx
+```
+
+| Action | Meaning |
+|---|---|
+| `start` | Start service now |
+| `stop` | Stop service now |
+| `restart` | Stop and start service |
+| `reload` | Ask service to reload configuration, if supported |
+| `enable` | Configure service to start at boot |
+| `disable` | Prevent automatic startup at boot |
+
+**Restart vs reload:** Restart performs a service restart and may interrupt active work. Reload asks the service to re-read configuration, usually without a full restart, if the service supports it.
